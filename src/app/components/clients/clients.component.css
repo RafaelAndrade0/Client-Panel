@@ -1,0 +1,13 @@
+.my-pagination /deep/ .ngx-pagination .current {
+  /* background: red; */
+  /* border-radius: 50%; */
+  padding: 6px 16px;
+  margin-left: 3px;
+  margin-right: 3px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  /* background-color: #ecf0f1; */
+  background-color: #ecf0f1;
+  border: 0px;
+  /* font-size: 20px; */
+}

@@ -1,0 +1,96 @@
+<div *ngIf="client">
+  <div class="row">
+    <div class="col-md-6">
+      <a routerLink="/" class="btn btn-link">
+        <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
+      </a>
+    </div>
+    <div class="col-md-6">
+      <div
+        class="btn-group float-right mb-2"
+        role="group"
+        aria-label="Basic example"
+      >
+        <button
+          [routerLink]="['/client/edit', client.id]"
+          type="button"
+          class="btn btn-dark"
+        >
+          Edit
+        </button>
+
+        <swal
+          #deleteSwal
+          title="Delete Client?"
+          text="This cannot be undone"
+          type="question"
+          [showCancelButton]="true"
+          [focusCancel]="true"
+          (confirm)="onDelete(client.id)"
+        >
+        </swal>
+
+        <button (click)="deleteSwal.show()" class="btn btn-danger">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="lead">Client Details</span>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <h3>{{ client.firstName }} {{ client.lastName }}</h3>
+        </div>
+        <div class="col-md-4 text-right">
+          <h4
+            [class.text-success]="hasBalance"
+            [class.text-danger]="!hasBalance"
+          >
+            Balance: {{ client.balance | currency: "BRL" }}
+            <small
+              ><button
+                class="btn btn-warning"
+                (click)="showBalanceUpdateInput = !showBalanceUpdateInput"
+              >
+                <i class="fa fa-pencil" aria-hidden="true"></i></button
+            ></small>
+          </h4>
+          <div class="clear-fix">
+            <form *ngIf="showBalanceUpdateInput" (submit)="changeBalance()">
+              <div class="input-group mb-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  name="newBalance"
+                  [(ngModel)]="newBalance"
+                  placeholder="Type the new Balance"
+                />
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit">
+                    Ok!
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <i class="fa fa-envelope"></i> {{ client.email }}
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-phone"></i>
+            {{ client.phone | mask: "(00) 00000-0000" }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
