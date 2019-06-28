@@ -5,7 +5,7 @@
   <div class="col-md-6">
     <h5
       [ngClass]="totalOwed < 0 ? 'text-danger' : 'text-success'"
-      class="text-right text-secondary"
+      class="text-left text-md-right text-secondary"
     >
       Total Owed: {{ totalOwed | currency: "BRL" }}
     </h5>
@@ -45,10 +45,13 @@
             | paginate: { itemsPerPage: 5, currentPage: currentPage }
         "
       >
-        <th scope="row">{{ client.firstName }} {{ client.lastName }}</th>
-        <td>{{ client.email }}</td>
+        <th [@fadeAnimation] scope="row">
+          {{ client.firstName }} {{ client.lastName }}
+        </th>
+        <td [@fadeAnimation]>{{ client.email }}</td>
         <td>
           <span
+            [@fadeAnimation]
             class="badge font-weight-bold"
             [ngClass]="
               client.balance <= 0 ? 'badge badge-danger' : 'badge badge-success'
