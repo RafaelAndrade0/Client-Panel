@@ -29,9 +29,7 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { FilterPipe } from "./shared/filter.pipe";
 
 import { NgxPaginationModule } from "ngx-pagination";
-// import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
-// export let options: Partial<IConfig> | (() => Partial<IConfig>);
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -47,7 +45,8 @@ import { NgxPaginationModule } from "ngx-pagination";
     RegisterComponent,
     SettingsComponent,
     NotFoundComponent,
-    FilterPipe
+    FilterPipe,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,

@@ -30,9 +30,7 @@ export class AddClientComponent implements OnInit {
 
   ngOnInit() {}
 
-  // ((TODO)) https://www.npmjs.com/package/ngx-mask
   onSubmit({ value, valid }: { value: Client; valid: boolean }) {
-    // console.log(`Value: ${value.firstName as Client} and valid: ${valid}`);
     if (this.disableBalanceOnAdd) {
       value.balance = 0;
     }

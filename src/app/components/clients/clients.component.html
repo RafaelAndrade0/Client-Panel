@@ -23,8 +23,40 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-9"></div>
+  <div class="col-3">
+    <div *ngIf="clients" class="btn-group float-right mb-2" appDropdown>
+      <button class="btn btn-danger btn-sm dropdown-toggle" type="button">
+        <i class="fa fa-file-pdf-o"></i> Generate PDF
+      </button>
+      <div class="dropdown-menu">
+        <a
+          (click)="generatePdfActualPage()"
+          class="dropdown-item"
+          style="cursor: pointer"
+          >Actual Page</a
+        >
+        <a
+          (click)="generatePdfSelected()"
+          class="dropdown-item"
+          style="cursor: pointer"
+          >Selected Items</a
+        >
+        <a
+          (click)="generatePdfAllPages()"
+          class="dropdown-item"
+          style="cursor: pointer"
+          >All Pages</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="table-responsive">
   <table
+    id="tableClients"
     *ngIf="clients; else noClients"
     [@fadeAnimation]
     class="table table-striped"
@@ -42,8 +74,11 @@
         *ngFor="
           let client of clients
             | filter: filterTable:'firstName'
-            | paginate: { itemsPerPage: 5, currentPage: currentPage }
+            | paginate: { itemsPerPage: 5, currentPage: currentPage };
+          let i = index
         "
+        (click)="rowSelected(client, i)"
+        [class.bg-info]="selectedRows.includes(i)"
       >
         <th [@fadeAnimation] scope="row">
           {{ client.firstName }} {{ client.lastName }}
@@ -90,18 +125,6 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col text-center">
-      <pagination-controls
-        class="my-pagination"
-        (pageChange)="p = $event"
-        directionLinks="false"
-      ></pagination-controls>
-    </div>
-  </div>
-</div> -->
 
 <ng-template #noClients>
   <hr />
