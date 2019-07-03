@@ -4,6 +4,7 @@ import { ToastrService } from "ngx-toastr";
 import { ClientService } from "src/app/services/client.service";
 import { Router } from "@angular/router";
 import { fadeAnimation } from "src/app/animations/fade.animation";
+import { Form } from "@angular/forms";
 
 @Component({
   selector: "app-add-client",
@@ -20,7 +21,7 @@ export class AddClientComponent implements OnInit {
   };
 
   disableBalanceOnAdd: boolean = true;
-  @ViewChild("clientForm") form: any;
+  @ViewChild("clientForm") form: Form;
 
   constructor(
     private toastr: ToastrService,

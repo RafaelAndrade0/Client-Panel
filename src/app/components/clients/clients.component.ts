@@ -24,6 +24,8 @@ export class ClientsComponent implements OnInit, OnDestroy {
 
   clientsSelected: Client[] = [];
 
+  htmlSnippet = 'Template <script>alert("0wned")</script> <b>Syntax</b>';
+
   ngOnInit() {
     this.getAllClients();
   }

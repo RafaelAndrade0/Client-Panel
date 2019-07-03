@@ -1,4 +1,4 @@
-import { Directive, HostListener, ElementRef } from "@angular/core";
+import { Directive, HostListener, ElementRef, Renderer2 } from "@angular/core";
 
 @Directive({
   selector: "[appDropdown]"
@@ -10,11 +10,15 @@ export class DropdownDirective {
     this.dropdownMenu.classList.toggle("show");
   }
 
-  constructor(private dropDownButton: ElementRef) {}
+  constructor(
+    private dropDownButton: ElementRef, // verificar o _
+    private renderer: Renderer2
+  ) {}
 
   ngOnInit(): void {
     this.dropdownMenu = this.dropDownButton.nativeElement.querySelector(
       ".dropdown-menu"
     );
+    // this.renderer.addClass(this.dropDownButton.nativeElement, ".dropdown-menu");
   }
 }
